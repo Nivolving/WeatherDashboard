@@ -1,0 +1,17 @@
+
+
+        
+     
+
+
+    
+$( document ).ready(function() {
+    console.log("ready");
+
+    $('#searchBtn').click(function(){
+        event.preventDefault();
+        var city = $('#inputCity').val();
+        console.log(city);
+
+    });
+});

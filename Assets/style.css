@@ -1,0 +1,16 @@
+
+
+.moderate {
+    background-color: whitesmoke;
+    color: white;
+  }
+  
+  .normal {
+    background-color: #ff6961;
+    color: white;
+  }
+  
+  .extreme {
+    background-color:purple;
+    color: white;
+  }
