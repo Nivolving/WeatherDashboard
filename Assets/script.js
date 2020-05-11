@@ -38,7 +38,7 @@ $( document ).ready(function() {
             var lon = weatherdata.coord.lon;
 
             /*api call for the UV Index*/
-            var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?appid=bfca03004ceea2ea6bcd069a361cb91e&lat=" + lat + "&lon=" + lon;
+            var uvIndex = "https://api.openweathermap.org/data/2.5/uvi?appid=bfca03004ceea2ea6bcd069a361cb91e&lat=" + lat + "&lon=" + lon;
             
             $.ajax({
                 url: uvIndex,
@@ -69,7 +69,7 @@ $( document ).ready(function() {
              });
              /*api call for the UV Index*/
 
-            var fiveDayForecast = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apikey;
+            var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apikey;
             $.ajax({
                 url: fiveDayForecast,
                 method: "GET"
@@ -80,38 +80,37 @@ $( document ).ready(function() {
                    console.log(fiveday.list[16])
                    console.log(fiveday.list[24])
                    console.log(fiveday.list[32]) */
-                   /* var containerDisplay = $('<div>').addClass('container');
-                   containerDisplay.attr('id', 'myContainer');
-                   $('#forecastcard').append(containerDisplay); */
-
-
-                   var displayCard = $('<div>').addClass('row');
-                   displayCard.attr('id', 'fivedaydisplay');
-                   $('#forecastcard').append(displayCard);
-
-                 
+                   var containerDisplay = $('<div>').addClass('container');
                    
-                    for(var i=0; i<fiveday.list.length; i = i+8)
+                   var text = $('<h3>').html("5 Day's Weather Forecast")
+                   $('#forecastcard').html(text).append(containerDisplay);
+                   
+                   var displayCard = $('<div>').addClass('row');
+                   containerDisplay.html(displayCard);
+
+                   
+                   
+                   
+                   for(var i=0; i<fiveday.list.length; i = i+8)
                    {
-                       //console.log(i);
-                       
-                       
                        var myCol = $('<div>').addClass('col forecast bg-primary text-white rounded border border-primary')
-                       myCol.attr('id','nextfivedays')
-                       $('#fivedaydisplay').append(myCol);
+                       
+
                        thisDate = fiveday.list[i].dt_txt;
-                       /* var fiveDate = new Date( thisDate *1000);
-                       var finalDate = fiveDate.toLocaleDateString('en-US'); */
                        myCol.append(thisDate)
-                       //console.log(thisDate);
                        myCol.append("Temp: " + convertToF(fiveday.list[i].main.temp) + 'F');
-                       //console.log(convertToF(fiveday.list[i].main.temp));
                        myCol.append("Humidity:" + fiveday.list[i].main.humidity + '%');
-                       //console.log(fiveday.list[i].main.humidity);
-                       displayCard.append(myCol)
+                       displayCard.append(myCol);
+                       
+                       
+                       
                      } 
 
+                     
+
             });
+
+            
             
             cityName = weatherdata.name;
             cityTemperature = convertToF(weatherdata.main.temp);
