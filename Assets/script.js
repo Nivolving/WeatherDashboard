@@ -5,7 +5,7 @@ $( document ).ready(function() {
         event.preventDefault();
         var city = $('#inputCity').val();
         var apikey = "bfca03004ceea2ea6bcd069a361cb91e";
-        localStorage(city);
+        //localStorage(city);
 
 
         /* function localStorage(value){
