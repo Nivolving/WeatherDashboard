@@ -14,25 +14,32 @@ $( document ).ready(function() {
                 // return the variable fahrenheit as the answer
                 return fahrenheit;
         }
-
-        /* function toConvertDate(){
-
-           
-
-        } */
-
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid="+ apikey;
+
+        
             
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(weatherdata) 
+        }).then(function(weatherdata)
         {
+            //console.log(weatherdata)
+            
             var date = weatherdata.dt;
             var myDate = new Date( date *1000);
             var newDate = myDate.toLocaleDateString('en-US');
-            //console.log(newDate)
-            
+
+            var weatherPic = weatherdata.weather[0].icon;
+            //console.log(weatherPic)
+            var imageURL = "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png"
+
+            $.ajax({
+                url: imageURL,
+                method: "GET"
+            }).then(function(weatherImage){
+
+                //console.log(weatherImage)
+
 
             var lat = weatherdata.coord.lat;
             var lon = weatherdata.coord.lon;
@@ -75,11 +82,13 @@ $( document ).ready(function() {
                 method: "GET"
             }).then(function(fiveday) {
 
-                 // console.log(fiveday.list)
+                 console.log(fiveday.list)
                    /*console.log(fiveday.list[8])
                    console.log(fiveday.list[16])
                    console.log(fiveday.list[24])
                    console.log(fiveday.list[32]) */
+
+
                    var containerDisplay = $('<div>').addClass('container');
                    
                    var text = $('<h3>').html("5 Day's Weather Forecast")
@@ -88,18 +97,23 @@ $( document ).ready(function() {
                    var displayCard = $('<div>').addClass('row');
                    containerDisplay.html(displayCard);
 
-                   
-                   
-                   
-                   for(var i=0; i<fiveday.list.length; i = i+8)
+                   for(var i=0; i<fiveday.list.length; i++)
                    {
-                       var myCol = $('<div>').addClass('col forecast bg-primary text-white rounded border border-primary')
+                       var myCol = $('<div>').addClass('col forecast bg-primary text-white rounded border border-primary mr-2');
+                       const foreCastIndex = (i * 8 )+ 4;
+                       //console.log(fiveday.list[i].dt);
+                       var thisDate = fiveday.list[foreCastIndex].dt;
+                       var myDate = new Date( thisDate *1000);
+                       var foreCast = myDate.toLocaleDateString('en-US');
                        
-
-                       thisDate = fiveday.list[i].dt_txt;
-                       myCol.append(thisDate)
-                       myCol.append("Temp: " + convertToF(fiveday.list[i].main.temp) + 'F');
-                       myCol.append("Humidity:" + fiveday.list[i].main.humidity + '%');
+                       console.log(foreCastIndex)
+                       
+                      
+                       
+                       //console.log(foreCast)           
+                       myCol.append($('<p>').append(foreCast).append($('<img>').attr('src',"https://openweathermap.org/img/wn/" + fiveday.list[i].weather[0].icon + "@2x.png")));
+                       myCol.append($('<p>').append("Temp: " + convertToF(fiveday.list[i].main.temp) + '°F'))
+                       myCol.append($('<p>').append("Humidity: " + fiveday.list[i].main.humidity + '%'));
                        displayCard.append(myCol);
                        
                        
@@ -109,19 +123,18 @@ $( document ).ready(function() {
                      
 
             });
-
-            
-            
             cityName = weatherdata.name;
             cityTemperature = convertToF(weatherdata.main.temp);
             humidity = weatherdata.main.humidity;
             windSpeed = weatherdata.wind.speed
-            $("#heading").html(cityName+ ' ' + '('+newDate+')');
+            $("#heading").html(cityName+ ' ' + '('+newDate+')').append($('<img>').attr('src',"https://openweathermap.org/img/wn/" + weatherPic + "@2x.png"));
             $('#temperature').html("Temperature: " + cityTemperature + "°F");
             $('#humidity').html("Humidity: " + humidity + "%");
             $('#Windspeed').html("Wind Speed: " + windSpeed + " MPH");
 
         });
+
+    });
         
             
     });
