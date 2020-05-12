@@ -10,14 +10,14 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark text-center">
+    <nav class="navbar navbar-dark bg-dark justify-content-center">
         <!-- Navbar content -->
         <h1 style="color: white;">Weather Dashboard</h1>
     </nav>
 
     <div class="container" id="maindisplay">
         <div class="row mt-2">
-            <div class="col-md-3 searcharea">
+            <div class="col-md-3 searcharea bg-light">
                 <h4>Search for a city:</h4>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="inputCity" type="search">
@@ -25,10 +25,11 @@
                         <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <div class="mt-5" id="prevSearches">
+                <div class="mt-5">
                     <!--Buttons for previous searches here-->
+                    <ul class="list-group" id="prevSearches"></ul>
                 </div>
-            </div>
+               </div>
             
                 <div class="col-md-9 mt-4" >
                     <div class="card">
@@ -46,12 +47,8 @@
                             
                         </div>
                     </div>
-                   
-                       
-                       
-                        
                 </div>
-                </div>
+            </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
