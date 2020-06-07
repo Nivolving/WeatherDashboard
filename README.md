@@ -1,10 +1,30 @@
-# WeatherDashboard
+# Title
+Weather Dashboard
+
+## Description
+An application to check the weather forecast of a city
+
+# Table Of Contents
+* [Title](Readme.md#title)
+* [Description](Readme.md#description)
+* [Installation](Readme.md#installation)
+* [Usage](Readme.md#contributing)
+* [Badges](Readme.md#license)
+* [Tests](Readme.md#tests)
 
 
-######This is my first time to use AJAX CALLS TO CALL API's. I have used OpenWeather App API to build this Dashboard. This Dashboard Gives weather details of City and their Weather conditions. 
+## Installation
+N/A
 
-######Cards Created to display next five days weather Forecast.
+## License
+![AGPL license](https://img.shields.io/badge/license-AGPL-blue.svg)
 
-###### In this project i have used API's, to fetch the city information, UV Index and the 5 Days Weather Forecast.
+## Contribution [![GitHub contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat)](https://github.com/nivolving/)
+N/A
 
+## Tests
+N/A
+
+## Usage
+N/A
 
